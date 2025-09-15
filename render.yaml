@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: n8n-app
+    env: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    disk:
+      name: n8n-data
+      mountPath: /home/n8nuser/.n8n
+      sizeGB: 1
+    envVars:
+      - key: N8N_HOST
+        value: 0.0.0.0
+      - key: N8N_PORT
+        value: 10000
+      - key: N8N_PROTOCOL
+        value: https
+      - key: NODE_ENV
+        value: production
+      - key: GENERIC_TIMEZONE
+        value: UTC
+      - key: N8N_DISABLE_PRODUCTION_MAIN_PROCESS
+        value: true
+      - key: EXECUTIONS_PROCESS
+        value: main
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: WEBHOOK_URL
+        fromService:
+          type: web
+          name: n8n-app
+          property: host
