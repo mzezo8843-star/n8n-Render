@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -33,6 +33,8 @@ ENV N8N_PORT=10000
 ENV N8N_PROTOCOL=https
 ENV NODE_ENV=production
 ENV WEBHOOK_URL=https://your-app-name.onrender.com
+ENV N8N_DISABLE_PRODUCTION_MAIN_PROCESS=true
+ENV EXECUTIONS_PROCESS=main
 
 # Start n8n
 CMD ["n8n", "start"]
