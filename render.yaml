@@ -5,10 +5,7 @@ services:
     dockerfilePath: ./Dockerfile
     region: oregon
     plan: free
-    disk:
-      name: n8n-data
-      mountPath: /home/n8nuser/.n8n
-      sizeGB: 1
+  
     envVars:
       - key: N8N_HOST
         value: 0.0.0.0
